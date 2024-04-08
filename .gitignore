@@ -1,0 +1,7 @@
+*.~*~
+/__history
+/imgui/backends/__history/
+/.history
+*.@@@
+*.twopts
+/win32/

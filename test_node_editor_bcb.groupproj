@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D9958212-9C27-4154-82F1-B46DE914E0C1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="simple.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="simple_vcl.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="simple">
+        <MSBuild Projects="simple.cbproj"/>
+    </Target>
+    <Target Name="simple:Clean">
+        <MSBuild Projects="simple.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="simple:Make">
+        <MSBuild Projects="simple.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="simple_vcl">
+        <MSBuild Projects="simple_vcl.cbproj"/>
+    </Target>
+    <Target Name="simple_vcl:Clean">
+        <MSBuild Projects="simple_vcl.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="simple_vcl:Make">
+        <MSBuild Projects="simple_vcl.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="simple;simple_vcl"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="simple:Clean;simple_vcl:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="simple:Make;simple_vcl:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
